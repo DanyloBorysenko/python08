@@ -51,7 +51,7 @@ def process_data() -> None:
     import matplotlib.pyplot as plt
     print("Generating visualization..")
     plt.figure()
-    plt.plot(df["id"], df["title_len"])
+    plt.bar(df["id"], df["title_len"])
     plt.xlabel("ID")
     plt.ylabel("Title Length")
     plt.title("Title Length by Post ID")
