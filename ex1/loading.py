@@ -74,4 +74,6 @@ def main():
 
 
 if __name__ == "__main__":
+    print("Python executable:", sys.executable)
+    print("Virtual environment prefix:", sys.prefix)
     main()
