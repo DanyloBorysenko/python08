@@ -1,34 +1,32 @@
 import sys
 from typing import Dict, Optional
+import importlib
 
 
 def dependencies_checker() -> Dict[str, Optional[str]]:
+    """
+    try to import required packages and return dict[package name, version]
+    """
     print("Checking dependencies:")
     dependencies = {}
-    try:
-        import pandas
-        dependencies["pandas"] = pandas.__version__
-    except ModuleNotFoundError:
-        dependencies["pandas"] = None
-    try:
-        import numpy
-        dependencies["numpy"] = numpy.__version__
-    except ModuleNotFoundError:
-        dependencies["numpy"] = None
-    try:
-        import requests
-        dependencies["requests"] = requests.__version__
-    except ModuleNotFoundError:
-        dependencies["requests"] = None
-    try:
-        import matplotlib
-        dependencies["matplotlib"] = matplotlib.__version__
-    except ModuleNotFoundError:
-        dependencies["matplotlib"] = None
+    required_packages = ["pandas", "numpy", "requests", "matplotlib"]
+    for package in required_packages:
+        try:
+            module = importlib.import_module(package)
+            dependencies[package] = getattr(module, "__version__", "Unknown")
+        except ModuleNotFoundError as e:
+            print(f"[Error] Error importing package: {e}")
+            dependencies[package] = None
     return dependencies
 
 
 def process_data() -> None:
+    """
+    1.Receive data using requests
+    2.Transform data to DataFrame object and add new column 'title_len'
+    3.Calculate average title length using numpy
+    4.Visualize data using matplotlib
+    """
     print("\nAnalyzing Matrix data...")
 
     # requests
@@ -74,6 +72,6 @@ def main():
 
 
 if __name__ == "__main__":
-    print("Python executable:", sys.executable)
+    # 'prefix' shows current path to the environment
     print("Virtual environment prefix:", sys.prefix)
     main()

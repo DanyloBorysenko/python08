@@ -3,9 +3,9 @@ name = "ex1"
 version = "0.1.0"
 description = ""
 authors = [
-    {name = "Danylo Borysenko",email = "borysenkodanyl@gmail.com"}
+    {name = "danborys",email = "danborys@gmail.com"}
 ]
-requires-python = ">=3.14"
+requires-python = ">=3.13"
 dependencies = [
     "pandas (>=3.0.0,<4.0.0)",
     "numpy (>=2.4.2,<3.0.0)",
@@ -13,6 +13,8 @@ dependencies = [
     "matplotlib (>=3.10.8,<4.0.0)"
 ]
 
+[tool.poetry]
+package-mode = false
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

@@ -2,6 +2,9 @@ import os
 
 
 def dependencies_check() -> bool:
+    """
+    try to import dotenv package and load environment variables
+    """
     try:
         from dotenv import load_dotenv
         load_dotenv()
@@ -12,6 +15,9 @@ def dependencies_check() -> bool:
 
 
 def configuration_check() -> bool:
+    """
+    check that all environment variables have values
+    """
     env_var = None
     try:
         with open(".env.example") as f:
@@ -29,6 +35,9 @@ def configuration_check() -> bool:
 
 
 def security_check() -> None:
+    """
+    check that .gitignore file contains .env line
+    """
     print("Environment security check:")
     print("[OK] No hardcoded secrets detected")
     print("[OK] Production overrides available")
@@ -42,7 +51,6 @@ def security_check() -> None:
                 print("[Error] .env was not added to .gitignore")
     except FileNotFoundError:
         print("[WARNING] .gitignore file missing")
-# [OK] No hardcoded secrets detected
 
 
 if __name__ == "__main__":
